@@ -1,0 +1,66 @@
+[submodule "code/environments/production/modules/puppetserver"]
+	path = code/environments/production/modules/puppetserver
+	url = https://github.com/camptocamp/puppet-puppetserver
+[submodule "code/environments/production/modules/stdlib"]
+	path = code/environments/production/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "code/environments/production/modules/puppetdb"]
+	path = code/environments/production/modules/puppetdb
+	url = https://github.com/puppetlabs/puppetlabs-puppetdb
+[submodule "code/environments/production/modules/inifile"]
+	path = code/environments/production/modules/inifile
+	url = https://github.com/puppetlabs/puppetlabs-inifile
+[submodule "code/environments/production/modules/postgresql"]
+	path = code/environments/production/modules/postgresql
+	url = git@github.com:puppetlabs/puppetlabs-postgresql.git
+[submodule "code/environments/production/modules/concat"]
+	path = code/environments/production/modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat
+[submodule "code/environments/production/modules/firewall"]
+	path = code/environments/production/modules/firewall
+	url = https://github.com/puppetlabs/puppetlabs-firewall
+[submodule "code/environments/production/modules/activemq"]
+	path = code/environments/production/modules/activemq
+	url = https://github.com/puppetlabs/puppetlabs-activemq
+[submodule "code/environments/production/modules/ruby"]
+	path = code/environments/production/modules/ruby
+	url = https://github.com/camptocamp/puppet-ruby
+[submodule "code/environments/production/modules/mcollective"]
+	path = code/environments/production/modules/mcollective
+	url = https://github.com/voxpupuli/puppet-mcollective
+[submodule "code/environments/production/modules/datacat"]
+	path = code/environments/production/modules/datacat
+	url = https://github.com/richardc/puppet-datacat
+[submodule "code/environments/production/modules/apt"]
+	path = code/environments/production/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "code/environments/production/modules/java"]
+	path = code/environments/production/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java
+[submodule "code/environments/production/modules/buildenv"]
+	path = code/environments/production/modules/buildenv
+	url = https://github.com/camptocamp/puppet-buildenv
+[submodule "code/environments/production/modules/augeasproviders_core"]
+	path = code/environments/production/modules/augeasproviders_core
+	url = https://github.com/hercules-team/augeasproviders_core
+[submodule "code/environments/production/modules/augeas"]
+	path = code/environments/production/modules/augeas
+	url = https://github.com/camptocamp/puppet-augeas
+[submodule "code/environments/production/modules/archive"]
+	path = code/environments/production/modules/archive
+	url = https://github.com/voxpupuli/puppet-archive
+[submodule "code/environments/production/modules/hiera_vault"]
+	path = code/environments/production/modules/hiera_vault
+	url = https://github.com/petems/hiera-vault
+[submodule "code/environments/production/modules/puppetserver_gem"]
+	path = code/environments/production/modules/puppetserver_gem
+	url = https://github.com/puppetlabs/puppetlabs-puppetserver_gem
+[submodule "code/environments/production/modules/systemd"]
+	path = code/environments/production/modules/systemd
+	url = https://github.com/camptocamp/puppet-systemd
+[submodule "code/environments/production/modules/vault"]
+	path = code/environments/production/modules/vault
+	url = https://github.com/jsok/puppet-vault
+[submodule "code/environments/production/modules/file_capability"]
+	path = code/environments/production/modules/file_capability
+	url = https://github.com/smoeding/puppet-file_capability

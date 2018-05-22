@@ -1,0 +1,9 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - "%{::hostname}"
+  - "common"
+
+:yaml:
+  :datadir:

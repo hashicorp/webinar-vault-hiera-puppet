@@ -1,0 +1,4 @@
+.vagrant
+*rpmnew
+*.tfstate*
+*/.terraform/*

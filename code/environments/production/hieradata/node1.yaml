@@ -1,0 +1,4 @@
+---
+classes:
+  - role::vault_message
+

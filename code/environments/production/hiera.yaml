@@ -1,0 +1,17 @@
+---
+version: 5
+hierarchy:
+  - name: "Hiera-vault lookup"
+    lookup_key: hiera_vault
+    options:
+      confine_to_keys:
+        - '^vault_.*'
+        - '^.*_password$'
+        - '^password.*'
+      ssl_verify: false
+      address: http://puppet:8200
+      token: 02567695-368c-0d1f-ef56-c7f235b3bf10
+      default_field: value
+      mounts:
+        generic:
+          - secret/puppet/%{::trusted.certname}/
