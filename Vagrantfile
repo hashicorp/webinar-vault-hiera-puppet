@@ -1,4 +1,4 @@
-if !Dir.exist?("#{__dir__}/code/environments/production/modules/activemq/")
+if !Dir.exist?("#{__dir__}/code/environments/production/modules/puppetserver/")
   puts "You need to initialize submodules first!"
   puts "Run: `git submodule update --init --recursive` in the root of the repo"
   exit 1
