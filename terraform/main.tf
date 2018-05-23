@@ -9,7 +9,23 @@ resource "vault_policy" "hiera_vault" {
 
   policy = <<EOT
 path "secret/puppet/*" {
-  capabilities = ["create", "read", "update", "delete", "list"]
+  capabilities = ["read","list"]
+}
+EOT
+}
+
+resource "vault_policy" "hiera_vault_operator" {
+  name = "hiera-operator"
+
+  policy = <<EOT
+# view the top level list
+path "secret/" {
+  capabilities = ["list"]
+}
+
+# change puppet entries
+path "secret/puppet/*" {
+  capabilities = ["read", "list"]
 }
 EOT
 }
