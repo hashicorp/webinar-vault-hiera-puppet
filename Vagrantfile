@@ -16,8 +16,7 @@ CONFIG_VAULT_SCRIPT
 
   config.vm.define "puppetserver", primary: true do |puppetserver|
     puppetserver.vm.hostname = "puppet"
-    puppetserver.vm.box = "geerlingguy/centos7"
-    puppetserver.vm.box_version = "1.2.6"
+    puppetserver.vm.box = "bento/centos-7"
     puppetserver.vm.network "private_network", ip: "10.13.37.2"
     puppetserver.vm.network :forwarded_port, guest: 8200, host: 8200, id: "vault"
 
@@ -37,8 +36,7 @@ CONFIG_VAULT_SCRIPT
 
   config.vm.define "node1", primary: true do |node1|
     node1.vm.hostname = "node1"
-    node1.vm.box = "geerlingguy/centos7"
-    node1.vm.box_version = "1.2.6"
+    node1.vm.box = "bento/centos-7"
     node1.vm.network "private_network", ip: "10.13.37.3"
 
     node1.vm.provision "shell", path: "initial_bootstrap.sh"
