@@ -25,7 +25,7 @@ path "secret/" {
 
 # change puppet entries
 path "secret/puppet/*" {
-  capabilities = ["read", "list"]
+  capabilities = ["create", "read", "update", "delete", "list"]
 }
 EOT
 }
