@@ -195,7 +195,7 @@ Notice: Applied catalog in 0.14 seconds
 Now change it...
 
 ```
-$ VAULT_TOKEN=677b88e3-300c-3a5a-ea2f-72ba70be5516 VAULT_ADDR='http://127.0.0.1:8200' vault write secret/puppet/common/vault_notify value=gbye_123
+$ VAULT_TOKEN=677b88e3-300c-3a5a-ea2f-72ba70be5516 VAULT_ADDR='http://127.0.0.1:8200' vault write secret/puppet/node1/vault_notify value=gbye_123
 Success! Data written to: secret/puppet/common/vault_notify
 ```
 
