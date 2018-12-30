@@ -6,16 +6,8 @@ end
 
 Vagrant.configure(2) do |config|
 
-  $install_puppet_script = <<-INSTALL_SCRIPT
-wget -O - https://raw.githubusercontent.com/petems/puppet-install-shell/master/install_puppet_5_agent.sh | sudo sh
-INSTALL_SCRIPT
-
-$config_vault_script = <<-CONFIG_VAULT_SCRIPT
-sudo /opt/puppetlabs/bin/puppet apply -e 'include ::role::master' --modulepath=/etc/puppetlabs/code/environments/production/modules/:/etc/puppetlabs/code/environments/production/site/ --environment=puppetserver_vault_bootstrap
-CONFIG_VAULT_SCRIPT
-
   config.vm.define "puppetserver", primary: true do |puppetserver|
-    puppetserver.vm.hostname = "puppet"
+    puppetserver.vm.hostname = "puppet.vm"
     puppetserver.vm.box = "bento/centos-7"
     puppetserver.vm.network "private_network", ip: "10.13.37.2"
     puppetserver.vm.network :forwarded_port, guest: 8200, host: 8200, id: "vault"
@@ -26,20 +18,32 @@ CONFIG_VAULT_SCRIPT
       vb.memory = "3072"
     end
 
-    puppetserver.vm.provision "shell", path: "initial_bootstrap.sh"
+    puppetserver.vm.provision "shell", path: "install_puppet.sh"
 
-    puppetserver.vm.provision "shell", inline: $config_vault_script
+$puppet_boostrap = <<-SCRIPT
+puppet apply -e 'include ::role::master' --modulepath=/etc/puppetlabs/code/environments/production/modules/:/etc/puppetlabs/code/environments/production/site/ --environment=puppetserver_vault_bootstrap
+SCRIPT
 
-    puppetserver.vm.post_up_message = "Puppetserver has been bootstrapped! Please unseal Vault to continue the demo: \n `VAULT_ADDR='http://127.0.0.1:8200' vault operator init` then \n`VAULT_ADDR='http://127.0.0.1:8200' vault operator unseal`"
+$vault_init_unseal = <<-SCRIPT
+export VAULT_ADDR=http://localhost:8200
+/usr/local/bin/vault operator init -key-shares=1 -key-threshold=1 | tee vault.keys
+VAULT_TOKEN=$(grep '^Initial' vault.keys | awk '{print $4}')
+VAULT_KEY=$(grep '^Unseal Key 1:' vault.keys | awk '{print $4}')
+export VAULT_TOKEN
+/usr/local/bin/vault operator unseal "$VAULT_KEY"
+echo $VAULT_TOKEN > /etc/vault_token.txt
+SCRIPT
 
+    puppetserver.vm.provision "shell", inline: $puppet_boostrap
+    puppetserver.vm.provision "shell", inline: $vault_init_unseal
   end
 
   config.vm.define "node1", primary: true do |node1|
-    node1.vm.hostname = "node1"
+    node1.vm.hostname = "node1.vm"
     node1.vm.box = "bento/centos-7"
     node1.vm.network "private_network", ip: "10.13.37.3"
 
-    node1.vm.provision "shell", path: "initial_bootstrap.sh"
+    node1.vm.provision "shell", path: "install_puppet.sh"
   end
 
 end

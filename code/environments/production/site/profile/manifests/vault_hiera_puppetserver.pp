@@ -4,17 +4,6 @@ class profile::vault_hiera_puppetserver {
 
   include ::puppetserver
 
-  ini_setting { "Change jruby to 9k":
-    ensure  => present,
-    setting => 'JRUBY_JAR',
-    path    => "/etc/sysconfig/puppetserver",
-    key_val_separator => '=',
-    section => '',
-    value   => '"/opt/puppetlabs/server/apps/puppetserver/jruby-9k.jar"',
-    show_diff => true,
-    notify  => Class['puppetserver::service']
-  }
-  ->
   package { 'vault-puppetserver-gem':
     ensure   => 'present',
     name     => 'vault',
@@ -26,5 +15,18 @@ class profile::vault_hiera_puppetserver {
     name     => 'vault',
     provider => 'puppet_gem',
   }
+  ->
+  package { 'debouncer-puppetserver-gem':
+    ensure   => 'present',
+    name     => 'debouncer',
+    provider => 'puppetserver_gem',
+  }
+  ->
+  package { 'debouncer-puppetpath-gem':
+    ensure   => 'present',
+    name     => 'debouncer',
+    provider => 'puppet_gem',
+  }
+  ~> Service['puppetserver']
 
 }
