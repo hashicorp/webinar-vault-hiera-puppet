@@ -2,11 +2,6 @@
 
 class profile::vault_server {
 
-  package { 'unzip':
-    ensure => installed,
-    before => Class['::vault'],
-  }
-
   file { '/mnt/vault/':
     ensure => directory,
     owner  => 'vault',
@@ -26,7 +21,7 @@ class profile::vault_server {
         tls_disable   => 1,
       },
     },
-    version   => '0.10.1',
+    version   => '1.0.1',
     enable_ui => true,
   }
 

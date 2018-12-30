@@ -7,12 +7,18 @@
 #
 class profile::base {
 
-  host { 'puppetserver':
-    ip => '10.13.37.2',
+  host { 'node1.vm':
+    ensure       => 'present',
+    host_aliases => ['node1'],
+    ip           => '10.13.37.3',
+    target       => '/etc/hosts',
   }
 
-  host { 'node1':
-    ip => '10.13.37.3',
+  host { 'puppet.vm':
+    ensure       => 'present',
+    host_aliases => ['puppet'],
+    ip           => '10.13.37.2',
+    target       => '/etc/hosts',
   }
 
   package { 'puppet-agent':

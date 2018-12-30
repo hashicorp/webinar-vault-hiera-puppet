@@ -10,8 +10,8 @@ hierarchy:
         - '^password.*'
       ssl_verify: false
       address: http://puppet:8200
-      token: 02567695-368c-0d1f-ef56-c7f235b3bf10
+      token: /etc/vault_token.txt
       default_field: value
       mounts:
-        generic:
-          - secret/puppet/%{::trusted.certname}/
+        puppet:
+          - '%{::trusted.certname}/'
