@@ -76,6 +76,17 @@ SCRIPT
 
 So the token saved to `/etc/vault_token.txt` which is read by `hiera_vault`.
 
+Log onto the `puppet` with `vagrant ssh puppet`, and change the secret contents:
+
+```
+$ export VAULT_ADDR=http://127.0.0.1:8200
+$ export VAULT_TOKEN=$(cat /etc/vault_token.txt)
+$ export PATH=$PATH:/usr/local/bin/
+$ vault secrets enable -version=1 -path=puppet kv
+$ vault kv put puppet/node1.vm/vault_notify value=hello_123
+Success! Data written to: puppet/node1.vm/vault_notify
+```
+
 Now, run an agent run on your node1 node:
 
 ```
@@ -101,8 +112,7 @@ Log onto the `puppet` with `vagrant ssh puppet`, and change the secret contents:
 $ export VAULT_ADDR=http://127.0.0.1:8200
 $ export VAULT_TOKEN=$(cat /etc/vault_token.txt)
 $ export PATH=$PATH:/usr/local/bin/
-$ vault secrets enable -version=1 -path=puppet kv
-$ vault kv put puppet/node1.vm/vault_notify value=hello345
+$ vault kv put puppet/node1.vm/vault_notify value=hello_456
 Success! Data written to: puppet/node1.vm/vault_notify
 ```
 
@@ -117,7 +127,7 @@ Info: Loading facts
 Info: Caching catalog for node1.vm
 Info: Applying configuration version '1545176860'
 Notice: testing vault hello345
-Notice: /Stage[main]/Profile::Vault_message/Notify[testing vault hello345]/message: defined 'message' as 'testing vault hello345'
+Notice: /Stage[main]/Profile::Vault_message/Notify[testing vault hello345]/message: defined 'message' as 'testing vault hello_456'
 Notice: Applied catalog in 0.18 seconds
 ```
 
@@ -134,7 +144,7 @@ $ vagrant provision node1 --provision-with puppet_server
 ==> node1: Info: Caching catalog for node1.home
 ==> node1: Info: Applying configuration version '1545176861'
 ==> node1: Notice: testing vault hello_123
-==> node1: Notice: /Stage[main]/Profile::Vault_message/Notify[testing vault hello_123]/message: defined 'message' as 'testing vault hello345'
+==> node1: Notice: /Stage[main]/Profile::Vault_message/Notify[testing vault hello_123]/message: defined 'message' as 'testing vault hello_456'
 ==> node1: Notice: Applied catalog in 0.16 seconds
 ```
 
@@ -148,6 +158,6 @@ In particular this means:
 * Auto signing is enabled, every node that connects to the puppetserver is automatically signed.
 * Passwords or PSKs are not randomized and easily guessable.
 * Vault should be on it's own dedicated node rather than the same server as the puppet master
-* Vault is being initialzed and unsealed automatically and the root token saved to a file on disk, this should be a manual step or use Vault Cloud Autounseal
+* Vault is being initialzed and unsealed automatically and the root token saved to a file on disk, this should be a manual step or use [Vault Cloud Autounseal](https://www.vaultproject.io/docs/concepts/seal.html)
 
 For a non publicly reachable playground this should be acceptable.
