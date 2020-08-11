@@ -32,6 +32,8 @@ VAULT_KEY=$(grep '^Unseal Key 1:' vault.keys | awk '{print $4}')
 export VAULT_TOKEN
 /usr/local/bin/vault operator unseal "$VAULT_KEY"
 echo $VAULT_TOKEN > /etc/vault_token.txt
+/usr/local/bin/vault secrets enable -path=puppet/ kv
+/usr/local/bin/vault kv put puppet/node1.vm/vault_notify value=hello_456
 SCRIPT
 
     puppetserver.vm.provision "shell", inline: $puppet_boostrap
