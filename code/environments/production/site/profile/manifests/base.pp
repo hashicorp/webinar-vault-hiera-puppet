@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MIT
+
 # common class that gets applied to all nodes
 # See: "code/environments/production/hieradata/common.yaml"
 # It:

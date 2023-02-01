@@ -1,4 +1,7 @@
 #!/bin/sh
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MIT
+
 
 if [ ! -f /etc/provisioned ] ; then
   # remove strange manually placed repo file
