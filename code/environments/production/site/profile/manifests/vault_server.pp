@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MIT
+
 # profile to deploy a puppet vault_server
 
 class profile::vault_server {
