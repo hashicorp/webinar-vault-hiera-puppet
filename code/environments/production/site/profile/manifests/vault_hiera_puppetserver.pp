@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2018, 2026
+
 # profile to deploy a puppet vault_server
 
 class profile::vault_hiera_puppetserver {

@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2018, 2026
+
 # profile to deploy a puppet vault_message
 
 class profile::vault_message {
