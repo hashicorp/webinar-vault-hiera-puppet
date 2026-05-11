@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2018, 2026
+
 provider "vault" {
   # Set token via VAULT_TOKEN=<token>
   #

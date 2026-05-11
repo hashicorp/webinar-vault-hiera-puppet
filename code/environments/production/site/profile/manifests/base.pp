@@ -1,3 +1,5 @@
+# Copyright IBM Corp. 2018, 2026
+
 # common class that gets applied to all nodes
 # See: "code/environments/production/hieradata/common.yaml"
 # It:

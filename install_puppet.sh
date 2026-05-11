@@ -1,4 +1,6 @@
 #!/bin/sh
+# Copyright IBM Corp. 2018, 2026
+
 
 if [ ! -f /etc/provisioned ] ; then
   # remove strange manually placed repo file
